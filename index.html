@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>병아리 한국 시계</title>
+
+<style>
+  body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #fffbe6;
+    font-family: Arial, sans-serif;
+  }
+
+  .clock-container {
+    position: relative;
+    width: 350px;
+  }
+
+  .clock-container img {
+    width: 100%;
+    display: block;
+  }
+
+  .time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    background: rgba(255,255,255,0.7);
+    padding: 8px 15px;
+    border-radius: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="clock-container">
+  <img src="https://shop2.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FZ35481114461.jpg%3Fut%3D20260110085159">
+  <div class="time" id="time"></div>
+</div>
+
+<script>
+function updateKoreaTime() {
+  const now = new Date();
+
+  const koreaTime = new Intl.DateTimeFormat("ko-KR", {
+    timeZone: "Asia/Seoul",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  }).format(now);
+
+  document.getElementById("time").textContent = koreaTime;
+}
+
+setInterval(updateKoreaTime, 1000);
+updateKoreaTime();
+</script>
+
+</body>
+</html>
