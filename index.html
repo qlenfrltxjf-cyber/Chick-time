@@ -5,64 +5,64 @@
 <title>뺙쓰타임</title>
 
 <style>
-  body {
-    margin: 0;
-    background: #fffbe6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: "Apple SD Gothic Neo", Arial, sans-serif;
-  }
+body {
+  margin: 0;
+  background: #f3ead7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
 
-  .container {
-    position: relative;
-    width: 360px;
-  }
+.container {
+  position: relative;
+  width: 380px;
+}
 
-  .container img {
-    width: 100%;
-    display: block;
-  }
+.container img {
+  width: 100%;
+  display: block;
+}
 
-  .time-overlay {
-    position: absolute;
-    bottom: 22%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 22px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-shadow:
-      0 0 6px rgba(255,255,255,0.6),
-      0 0 12px rgba(255,255,255,0.4);
-    pointer-events: none;
-  }
+.led-cover {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 18%;
+  background: #1c1c1c;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .label {
-    font-size: 14px;
-    opacity: 0.85;
-    display: block;
-    text-align: center;
-  }
+.time-text {
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px #ffffff;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-  <img src="https://shop2.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FZ35481114461.jpg%3Fut%3D20260110085159">
-  <div class="time-overlay">
-    <span class="label">뺙쓰타임</span>
-    <span id="time"></span>
+  <img src="https://i.imgur.com/8Km9tLL.png">
+  <div class="led-cover">
+    <div class="time-text">
+      뺙쓰타임 <span id="time"></span>
+    </div>
   </div>
 </div>
 
 <script>
 function updateTime() {
   const now = new Date();
-  const time = new Intl.DateTimeFormat("ko-KR", {
+  const koreaTime = new Intl.DateTimeFormat("ko-KR", {
     timeZone: "Asia/Seoul",
     hour: "2-digit",
     minute: "2-digit",
@@ -70,7 +70,7 @@ function updateTime() {
     hour12: false
   }).format(now);
 
-  document.getElementById("time").textContent = time;
+  document.getElementById("time").textContent = koreaTime;
 }
 
 setInterval(updateTime, 1000);
