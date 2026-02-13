@@ -2,56 +2,67 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>병아리 한국 시계</title>
+<title>뺙쓰타임</title>
 
 <style>
   body {
     margin: 0;
+    background: #fffbe6;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #fffbe6;
-    font-family: Arial, sans-serif;
+    font-family: "Apple SD Gothic Neo", Arial, sans-serif;
   }
 
-  .clock-container {
+  .container {
     position: relative;
-    width: 350px;
+    width: 360px;
   }
 
-  .clock-container img {
+  .container img {
     width: 100%;
     display: block;
   }
 
-  .time {
+  .time-overlay {
     position: absolute;
-    top: 50%;
+    bottom: 22%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 28px;
-    font-weight: bold;
-    color: black;
-    background: rgba(255,255,255,0.7);
-    padding: 8px 15px;
-    border-radius: 10px;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.6),
+      0 0 12px rgba(255,255,255,0.4);
+    pointer-events: none;
+  }
+
+  .label {
+    font-size: 14px;
+    opacity: 0.85;
+    display: block;
+    text-align: center;
   }
 </style>
 </head>
 
 <body>
 
-<div class="clock-container">
+<div class="container">
   <img src="https://shop2.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop2.daumcdn.net%2Fshophow%2Fp%2FZ35481114461.jpg%3Fut%3D20260110085159">
-  <div class="time" id="time"></div>
+  <div class="time-overlay">
+    <span class="label">뺙쓰타임</span>
+    <span id="time"></span>
+  </div>
 </div>
 
 <script>
-function updateKoreaTime() {
+function updateTime() {
   const now = new Date();
-
-  const koreaTime = new Intl.DateTimeFormat("ko-KR", {
+  const time = new Intl.DateTimeFormat("ko-KR", {
     timeZone: "Asia/Seoul",
     hour: "2-digit",
     minute: "2-digit",
@@ -59,11 +70,11 @@ function updateKoreaTime() {
     hour12: false
   }).format(now);
 
-  document.getElementById("time").textContent = koreaTime;
+  document.getElementById("time").textContent = time;
 }
 
-setInterval(updateKoreaTime, 1000);
-updateKoreaTime();
+setInterval(updateTime, 1000);
+updateTime();
 </script>
 
 </body>
